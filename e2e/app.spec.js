@@ -1,16 +1,15 @@
 // @ts-check
 const { test, expect } = require("@playwright/test");
-// import second from '@playwright/test';
 
 test("has title", async ({ page }) => {
-  await page.goto("/", { timeout: 10000 });
+  await page.goto("/");
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/Learn Jenkins/);
 });
 
 test("has Jenkins in the body", async ({ page }) => {
-  await page.goto("/", { timeout: 10000 });
+  await page.goto("/");
 
   const isVisible = await page
     .locator('a:has-text("Learn Jenkins on Udemy")')
@@ -19,7 +18,7 @@ test("has Jenkins in the body", async ({ page }) => {
 });
 
 test("has expected app version", async ({ page }) => {
-  await page.goto("/", { timeout: 10000 });
+  await page.goto("/");
 
   const expectedAppVersion = process.env.REACT_APP_VERSION
     ? process.env.REACT_APP_VERSION

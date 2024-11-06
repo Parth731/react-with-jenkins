@@ -1,3 +1,4 @@
+import React from "react"; // Make sure this line is present
 import { render, screen } from "@testing-library/react";
 import App from "./App";
 
