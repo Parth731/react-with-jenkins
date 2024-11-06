@@ -40,5 +40,15 @@
     "@playwright/test": "^1.48.2",
     "@types/node": "^22.9.0",
     "start-server-and-test": "^2.0.8"
+  },
+   "jest-junit": {
+    "suiteName": "jest tests",
+    "outputDirectory": "jest-results",
+    "outputName": "junit.xml",
+    "uniqueOutputName": "false",
+    "classNameTemplate": "{classname}-{title}",
+    "titleTemplate": "{classname}-{title}",
+    "ancestorSeparator": " › ",
+    "usePathForSuiteName": "true"
   }
 }
