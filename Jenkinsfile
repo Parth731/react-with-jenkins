@@ -52,7 +52,7 @@ pipeline {
                     npm install serve
                     node_modules/.bin/serve -s build &
                     sleep 10
-                    npm run test:e2e
+                    npm test:e2e
                 '''
 
             }
