@@ -49,10 +49,29 @@ pipeline {
             }
             steps {
                 sh '''
-                    npm install serve
-                    node_modules/.bin/serve -s build &
+                     # Use a writable directory for npm global installs
+                    export HOME=/tmp/jenkins
+                    mkdir -p $HOME/.npm-global
+                    
+                    # Set npm to use this directory for global installs
+                    npm config set prefix="$HOME/.npm-global"
+                    
+                    # Update the PATH to include the new directory
+                    export PATH=$HOME/.npm-global/bin:$PATH
+                    
+                    # Debugging: Print HOME and current user
+                    echo "HOME: $HOME"
+                    echo "Current User: $(whoami)"
+                    
+                    # Install serve globally
+                    npm install -g serve
+                    
+                    # Serve the build and run tests
+                    nohup serve -s build &
                     sleep 10
-                    npx playwright test
+                    
+                    # Run Playwright tests
+                    npx playwright test --reporter=html
                 '''
 
             }
@@ -60,7 +79,8 @@ pipeline {
     }
     post {
         always {
-            junit 'jest-results/junit.xml'
+            junit 'jest-results/junit.xml',
+            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'Playwright HTML Report', reportTitles: '', useWrapperFileDirectly: true])
         }
     }	
 
