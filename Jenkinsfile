@@ -54,7 +54,7 @@ pipeline {
                     nohup serve -s build &
                     sleep 15
                     # npx playwright install
-                    npx playwright test --reporter=html   
+                    npx playwright test  
                 '''
 
             }
@@ -63,7 +63,6 @@ pipeline {
     post {
         always {
             junit 'jest-results/junit.xml'
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'playwright-report', reportFiles: 'index.html', reportName: 'play HTML Report', reportTitles: '', useWrapperFileDirectly: true])
         }
     }	
 
