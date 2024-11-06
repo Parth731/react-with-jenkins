@@ -24,41 +24,48 @@ pipeline {
         }
         */
 
-        stage('Test'){
-            agent {
-                docker {
-                    image 'node:18.20.4-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                    # test -f ./build/index.html
-                    npm test
-                '''
+        stage('Tests'){
+            parallel {
+                stage('Unit Test'){
+                    agent {
+                        docker {
+                            image 'node:18.20.4-alpine'
+                            reuseNode true
+                        }
+                    }
+                    steps {
+                        sh '''
+                            # test -f ./build/index.html
+                            npm test
+                        '''
 
+                    }
+                }
+
+                stage('E2E'){
+                    
+                    agent {
+                        docker {
+                            image 'mcr.microsoft.com/playwright:v1.48.1-noble'
+                            reuseNode true
+                            args '-u root:root'
+                        }
+                    }
+                    steps {
+                        sh '''
+                            npm install -g serve
+                            nohup serve -s build &
+                            sleep 15
+                            # npx playwright install
+                            npx playwright test --reporter=html   
+                        '''
+
+                    }
+                }
             }
         }
 
-         stage('E2E'){
-            agent {
-                docker {
-                    image 'mcr.microsoft.com/playwright:v1.48.1-noble'
-                    reuseNode true
-                     args '-u root:root'
-                }
-            }
-            steps {
-                sh '''
-                    npm install -g serve
-                    nohup serve -s build &
-                    sleep 15
-                    # npx playwright install
-                    npx playwright test --reporter=html   
-                '''
-
-            }
-        }
+      
     }
     post {
         always {
