@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        
+        /*
         stage('Build') {
             agent {
                 docker {
@@ -22,7 +22,7 @@ pipeline {
                 '''
             }
         }
-        
+        */
 
         stage('Test'){
             agent {
@@ -54,7 +54,7 @@ pipeline {
                     nohup serve -s build &
                     sleep 15
                     # npx playwright install
-                    npx playwright test  
+                    npx playwright test --reporter=html   
                 '''
 
             }
