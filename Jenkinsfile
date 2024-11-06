@@ -53,7 +53,7 @@ pipeline {
                     npm install -g serve
                     nohup serve -s build &
                     sleep 15
-                    # npx playwright install
+                    npx playwright install
                     npx playwright test --reporter=html   
                 '''
 
