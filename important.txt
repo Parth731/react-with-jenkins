@@ -1,1 +1,3 @@
 C:\Users\patel\AppData\Local\Docker\wsl
+
+netlify-access-token: nfp_UPvAkQvWhWGc3ZKZe2sKcRuYbbbSiJJ7f585
