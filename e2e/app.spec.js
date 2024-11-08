@@ -9,7 +9,7 @@ const { test, expect } = require("@playwright/test");
 // });
 
 test("has Jenkins in the body", async ({ page }) => {
-  await page.goto("http://localhost:3000/");
+  await page.goto("/");
 
   const isVisible = await page
     .locator('a:has-text("Learn Jenkins on Udemy")')
@@ -18,7 +18,7 @@ test("has Jenkins in the body", async ({ page }) => {
 });
 
 test("has expected app version", async ({ page }) => {
-  await page.goto("http://localhost:3000/");
+  await page.goto("/");
 
   const expectedAppVersion = process.env.REACT_APP_VERSION
     ? process.env.REACT_APP_VERSION
