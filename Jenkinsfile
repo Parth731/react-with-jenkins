@@ -86,26 +86,6 @@ pipeline {
             }
         }
 
-        stage('') {
-
-         
-            agent {
-                docker {
-                    image 'node:18.20.4-alpine'
-                    reuseNode true
-                }
-            }
-            steps {
-                sh '''
-                
-                '''
-                script{
-                    env.STAGING_URL = sh(script:"node_modules/.bin/node-jq -r '.deploy_url' deploy-output.json",returnStdout: true).trim()
-                }
-            }
-           
-        }
-
         stage('Deploy Staging'){
   
             agent {
