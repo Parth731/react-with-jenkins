@@ -1,3 +1,4 @@
 C:\Users\patel\AppData\Local\Docker\wsl
 
 netlify-access-token: nfp_UPvAkQvWhWGc3ZKZe2sKcRuYbbbSiJJ7f585
+https://tranquil-halva-ef2997.netlify.app
