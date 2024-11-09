@@ -1,6 +1,3 @@
-FROM mcr.microsoft.com/playwright:v1.48.1-noble
+FROM nginx:1.27-alpine
 
-RUN npm install -g netlify-cli
-RUN npm install -g serve
-RUN apt update
-RUN apt install jq -y
+COPY build /usr/share/nginx/html
