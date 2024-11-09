@@ -41,13 +41,14 @@ pipeline {
                 docker {
                     image 'amazon/aws-cli'
                     reuseNode true
+                    // can not connect to the docker demon at unix ///var/run/docker.sock. Is the docker daemon running on this host? that error slove
                     args '-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=""'
                 }
             }
             steps{
                 sh '''
                     amazon-linux-extras install docker
-                    docker build -t myJenkinsApp .
+                    docker build -t myjenkinsapp .
                 '''
             }
         }
