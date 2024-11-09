@@ -17,6 +17,7 @@ function App() {
         </a>
       </header>
       <p>Application version: {process.env.REACT_APP_VERSION}</p>
+      <h1>test</h1>
     </div>
   );
 }
