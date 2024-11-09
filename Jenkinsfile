@@ -74,7 +74,7 @@ pipeline {
                     sh '''
                     aws --version
 
-                    sed "s/#APP_VERSION#/$REACT_APP_VERSION/g" aws/task-defination-prod.json
+                    sed -i "s/#APP_VERSION#/$REACT_APP_VERSION/g" aws/task-defination-prod.json
                     
                     LATEST_TD_REVISION=$(aws ecs register-task-definition --cli-input-json file://aws/task-defination-prod.json | jq '.taskDefinition.revision')
 
